@@ -1,0 +1,28 @@
+{
+  "name": "AudioBuffer",
+  "version": "0.1.0",
+  "author": "Sébastien Piquemal <sebpiq@gmail.com>",
+  "description": "An implementation of Web Audio API's AudioBuffer for node.js and the browser.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sebpiq/AudioBuffer.git"
+  },
+  "keywords": [
+    "audio",
+    "sound",
+    "music",
+    "web audio",
+    "web audio api",
+    "dsp"
+  ],
+  "dependencies" : {},
+  "analyze": false,
+  "devDependencies": {
+    "mocha": "1.12.x",
+    "browserify": "2.25.x"
+  }, 
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.10"
+  }
+}
