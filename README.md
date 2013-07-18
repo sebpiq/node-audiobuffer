@@ -4,13 +4,20 @@ AudioBuffer
 An implementation of [Web Audio API's AudioBuffer](https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html#AudioBuffer) for node.js.
 
 
-Installation 
-==============
+Getting started 
+=================
 
-You can install it with `npm` :
+Install `AudioBuffer` with `npm` :
 
 ```
 npm install AudioBuffer
+```
+
+Then import it in your code, and do your stuff :
+
+```javascript
+var AudioBuffer = require('AudioBuffer')
+var audioBuffer = new AudioBuffer(1, 100000, 44100)
 ```
 
 
