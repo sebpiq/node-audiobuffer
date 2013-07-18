@@ -1,5 +1,5 @@
 {
-  "name": "AudioBuffer",
+  "name": "audiobuffer",
   "version": "0.1.0",
   "author": "Sébastien Piquemal <sebpiq@gmail.com>",
   "description": "An implementation of Web Audio API's AudioBuffer for node.js and the browser.",
