@@ -66,4 +66,42 @@ describe('AudioBuffer', function() {
 
   })
 
+  describe('fromArray', function() {
+
+    it('should create an AudioBuffer from an array of arrays', function() {
+      var array = [
+        [1, 2, 3, 4],
+        [11, 22, 33, 44],
+        [111, 222, 333, 444]
+      ]
+      var ab = AudioBuffer.fromArray(array, 44100)
+      assert.equal(ab.numberOfChannels, 3)
+      assert.equal(ab.sampleRate, 44100)
+      assert.equal(ab.length, 4)
+      for (var i = 0; i < 3; i++)
+        assert.ok(ab.getChannelData(i) instanceof Float32Array)
+      assert.deepEqual(toArray(ab.getChannelData(0)), [1, 2, 3, 4])
+      assert.deepEqual(toArray(ab.getChannelData(1)), [11, 22, 33, 44])
+      assert.deepEqual(toArray(ab.getChannelData(2)), [111, 222, 333, 444])
+    })
+
+    it('should create an AudioBuffer from an array of Float32Array', function() {
+      var array = [
+        new Float32Array([1, 2, 3, 4]),
+        new Float32Array([11, 22, 33, 44]),
+        new Float32Array([111, 222, 333, 444])
+      ]
+      var ab = AudioBuffer.fromArray(array, 44100)
+      assert.equal(ab.numberOfChannels, 3)
+      assert.equal(ab.sampleRate, 44100)
+      assert.equal(ab.length, 4)
+      for (var i = 0; i < 3; i++)
+        assert.ok(ab.getChannelData(i) instanceof Float32Array)
+      assert.deepEqual(toArray(ab.getChannelData(0)), [1, 2, 3, 4])
+      assert.deepEqual(toArray(ab.getChannelData(1)), [11, 22, 33, 44])
+      assert.deepEqual(toArray(ab.getChannelData(2)), [111, 222, 333, 444])
+    })
+
+  })
+
 })
