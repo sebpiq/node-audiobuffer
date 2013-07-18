@@ -10,13 +10,13 @@ Getting started
 Install `AudioBuffer` with `npm` :
 
 ```
-npm install AudioBuffer
+npm install audiobuffer
 ```
 
 Then import it in your code, and do your stuff :
 
 ```javascript
-var AudioBuffer = require('AudioBuffer')
+var AudioBuffer = require('audiobuffer')
 var audioBuffer = new AudioBuffer(1, 100000, 44100)
 ```
 
