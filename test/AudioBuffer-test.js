@@ -101,4 +101,40 @@ describe('AudioBuffer', function() {
 
   })
 
+  describe('slice', function() {
+
+    it('should slice properly all channels', function() {
+      var sliced
+        , ab = AudioBuffer.fromArray([
+          [1, 2, 3, 4, 5],
+          [11, 22, 33, 44, 55],
+          [111, 222, 333, 444, 555]
+        ], 22050)
+      slice = ab.slice(0)
+      assert.equal(slice.length, 5)
+      assert.equal(slice.numberOfChannels, 3)
+      assert.equal(slice.sampleRate, 22050)
+      assert.deepEqual(_.toArray(slice.getChannelData(0)), [1, 2, 3, 4, 5])
+      assert.deepEqual(_.toArray(slice.getChannelData(1)), [11, 22, 33, 44, 55])
+      assert.deepEqual(_.toArray(slice.getChannelData(2)), [111, 222, 333, 444, 555])
+
+      slice = ab.slice(3)
+      assert.equal(slice.length, 2)
+      assert.equal(slice.numberOfChannels, 3)
+      assert.equal(slice.sampleRate, 22050)
+      assert.deepEqual(_.toArray(slice.getChannelData(0)), [4, 5])
+      assert.deepEqual(_.toArray(slice.getChannelData(1)), [44, 55])
+      assert.deepEqual(_.toArray(slice.getChannelData(2)), [444, 555])
+
+      slice = ab.slice(1, 3)
+      assert.equal(slice.length, 2)
+      assert.equal(slice.numberOfChannels, 3)
+      assert.equal(slice.sampleRate, 22050)
+      assert.deepEqual(_.toArray(slice.getChannelData(0)), [2, 3])
+      assert.deepEqual(_.toArray(slice.getChannelData(1)), [22, 33])
+      assert.deepEqual(_.toArray(slice.getChannelData(2)), [222, 333])
+    })
+
+  })
+
 })
