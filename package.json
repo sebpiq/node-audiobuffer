@@ -15,11 +15,12 @@
     "web audio api",
     "dsp"
   ],
-  "dependencies" : {},
+  "dependencies" : {
+    "underscore": "1.4.x"
+  },
   "analyze": false,
   "devDependencies": {
-    "mocha": "1.12.x",
-    "browserify": "2.25.x"
+    "mocha": "1.12.x"
   }, 
   "license": "MIT",
   "engines": {

@@ -1,11 +1,8 @@
 var assert = require('assert')
+  , _ = require('underscore')
   , AudioBuffer = require('../lib/AudioBuffer')
 
 describe('AudioBuffer', function() {
-  
-  var toArray = function(data) {
-    return Array.prototype.slice.call(data, 0)
-  }
 
   it('should be created with the right attributes', function() {
     var ab = new AudioBuffer(3, 100, 44100)
@@ -16,9 +13,9 @@ describe('AudioBuffer', function() {
     assert.equal(ab.sampleRate, 44100)
     assert.equal(ab.length, 100)
     assert.equal(ab.numberOfChannels, 3)
-    toArray(data1).forEach(function(val) { assert.equal(val, 0) })
-    toArray(data2).forEach(function(val) { assert.equal(val, 0) })
-    toArray(data3).forEach(function(val) { assert.equal(val, 0) })
+    _.toArray(data1).forEach(function(val) { assert.equal(val, 0) })
+    _.toArray(data2).forEach(function(val) { assert.equal(val, 0) })
+    _.toArray(data3).forEach(function(val) { assert.equal(val, 0) })
     assert.equal(data1.length, 100)
     assert.equal(data2.length, 100)
     assert.equal(data3.length, 100)
@@ -56,9 +53,9 @@ describe('AudioBuffer', function() {
       assert.equal(ab.sampleRate, 44100)
       assert.equal(ab.length, 200)
       assert.equal(ab.numberOfChannels, 4)
-      toArray(data1).forEach(function(val) { assert.equal(val, 111) })
-      toArray(data2).forEach(function(val) { assert.equal(val, 111) })
-      toArray(data3).forEach(function(val) { assert.equal(val, 111) })
+      _.toArray(data1).forEach(function(val) { assert.equal(val, 111) })
+      _.toArray(data2).forEach(function(val) { assert.equal(val, 111) })
+      _.toArray(data3).forEach(function(val) { assert.equal(val, 111) })
       assert.equal(data1.length, 200)
       assert.equal(data2.length, 200)
       assert.equal(data3.length, 200)
@@ -80,9 +77,9 @@ describe('AudioBuffer', function() {
       assert.equal(ab.length, 4)
       for (var i = 0; i < 3; i++)
         assert.ok(ab.getChannelData(i) instanceof Float32Array)
-      assert.deepEqual(toArray(ab.getChannelData(0)), [1, 2, 3, 4])
-      assert.deepEqual(toArray(ab.getChannelData(1)), [11, 22, 33, 44])
-      assert.deepEqual(toArray(ab.getChannelData(2)), [111, 222, 333, 444])
+      assert.deepEqual(_.toArray(ab.getChannelData(0)), [1, 2, 3, 4])
+      assert.deepEqual(_.toArray(ab.getChannelData(1)), [11, 22, 33, 44])
+      assert.deepEqual(_.toArray(ab.getChannelData(2)), [111, 222, 333, 444])
     })
 
     it('should create an AudioBuffer from an array of Float32Array', function() {
@@ -97,9 +94,9 @@ describe('AudioBuffer', function() {
       assert.equal(ab.length, 4)
       for (var i = 0; i < 3; i++)
         assert.ok(ab.getChannelData(i) instanceof Float32Array)
-      assert.deepEqual(toArray(ab.getChannelData(0)), [1, 2, 3, 4])
-      assert.deepEqual(toArray(ab.getChannelData(1)), [11, 22, 33, 44])
-      assert.deepEqual(toArray(ab.getChannelData(2)), [111, 222, 333, 444])
+      assert.deepEqual(_.toArray(ab.getChannelData(0)), [1, 2, 3, 4])
+      assert.deepEqual(_.toArray(ab.getChannelData(1)), [11, 22, 33, 44])
+      assert.deepEqual(_.toArray(ab.getChannelData(2)), [111, 222, 333, 444])
     })
 
   })
