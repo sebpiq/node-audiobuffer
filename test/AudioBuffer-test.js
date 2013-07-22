@@ -204,4 +204,74 @@ describe('AudioBuffer', function() {
 
   })
 
+  describe('set', function() {
+
+    it('should set audio buffer data, channel by channel', function() {
+      var audioBuffer1 = AudioBuffer.fromArray([
+          [1, 2, 3, 4, 5],
+          [11, 22, 33, 44, 55],
+        ], 22050)
+        , audioBuffer2 = AudioBuffer.fromArray([
+          [6, 7],
+          [66, 77],
+        ], 22050)
+
+      audioBuffer1.set(audioBuffer2)
+      assert.deepEqual(_.toArray(audioBuffer1.getChannelData(0)), [6, 7, 3, 4, 5])
+      assert.deepEqual(_.toArray(audioBuffer1.getChannelData(1)), [66, 77, 33, 44, 55])
+    })
+
+    it('should set audio buffer data, taking offset into account', function() {
+      var audioBuffer1 = AudioBuffer.fromArray([
+          [1, 2, 3, 4, 5],
+          [11, 22, 33, 44, 55],
+        ], 22050)
+        , audioBuffer2 = AudioBuffer.fromArray([
+          [6, 7],
+          [66, 77],
+        ], 22050)
+
+      audioBuffer1.set(audioBuffer2, 2)
+      assert.deepEqual(_.toArray(audioBuffer1.getChannelData(0)), [1, 2, 6, 7, 5])
+      assert.deepEqual(_.toArray(audioBuffer1.getChannelData(1)), [11, 22, 66, 77, 55])
+    })
+
+    it('should throw an error if the AudioBuffers to set are incompatible', function() {
+      var ab1, ab2
+      ab1 = AudioBuffer.fromArray([
+        [1, 2, 3, 4, 5],
+        [11, 22, 33, 44, 55],
+        [111, 222, 333, 444, 555]
+      ], 22050)
+      ab2 = AudioBuffer.fromArray([
+        [6, 7],
+        [66, 77],
+        [666, 777]
+      ], 44100)
+      assert.throws(function() { ab1.set(ab2) })
+      
+      ab1 = AudioBuffer.fromArray([
+        [1, 2, 3, 4, 5],
+        [11, 22, 33, 44, 55],
+      ], 22050)
+      ab2 = AudioBuffer.fromArray([
+        [6, 7],
+        [66, 77],
+        [666, 777]
+      ], 22050)
+      assert.throws(function() { ab1.set(ab2) })
+
+      ab1 = AudioBuffer.fromArray([
+        [1, 2, 3, 4, 5],
+        [11, 22, 33, 44, 55],
+      ], 22050)
+      ab2 = AudioBuffer.fromArray([
+        [6, 7, 8, 9, 10, 11],
+        [66, 77, 88, 99, 1010, 1111]
+      ], 22050)
+      assert.throws(function() { ab1.set(ab2) })
+    })
+
+  })
+
 })
