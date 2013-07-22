@@ -135,6 +135,23 @@ describe('AudioBuffer', function() {
       assert.deepEqual(_.toArray(slice.getChannelData(2)), [222, 333])
     })
 
+    it('should return the whole slice even of the slice end is to big', function() {
+      var sliced
+        , ab = AudioBuffer.fromArray([
+          [1, 2, 3, 4, 5],
+          [11, 22, 33, 44, 55],
+          [111, 222, 333, 444, 555]
+        ], 22050)
+
+      slice = ab.slice(3, 10)
+      assert.equal(slice.length, 2)
+      assert.equal(slice.numberOfChannels, 3)
+      assert.equal(slice.sampleRate, 22050)
+      assert.deepEqual(_.toArray(slice.getChannelData(0)), [4, 5])
+      assert.deepEqual(_.toArray(slice.getChannelData(1)), [44, 55])
+      assert.deepEqual(_.toArray(slice.getChannelData(2)), [444, 555])
+    })
+
   })
 
   describe('concat', function() {
