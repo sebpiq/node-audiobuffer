@@ -49,6 +49,11 @@ This method behaves similarly to `Array.concat`.
 The concatenation happens in the length, therefore the returned buffer has the same number of channels and the same sample rate than the calling `AudioBuffer`.
 
 
+####set(audioBuffer, offset)
+
+Sets the calling audio buffer channels with the values from `audioBuffer`, starting at `offset`
+
+
 ###Class methods
 
 ####filledWithVal(val, numberOfChannels, length, sampleRate)
@@ -67,3 +72,15 @@ var audioBuffer = AudioBuffer.fromArray([
   [-1, -0.8, -0.7, -0.6, 0.3],
 ], 22050)
 ```
+
+
+Changelog
+===========
+
+0.2.0
+
+- AudioBuffer.set
+
+0.1.0
+
+- first release
