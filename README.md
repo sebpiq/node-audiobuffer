@@ -2,7 +2,7 @@ AudioBuffer
 =============
 
 An implementation of [Web Audio API's AudioBuffer](https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html#AudioBuffer) for node.js.
-
+With extra-sugar for slicing, concatenating, creating, ... audiobuffers.
 
 Getting started 
 =================
